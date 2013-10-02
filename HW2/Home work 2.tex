@@ -1,0 +1,801 @@
+%% ================================================================================
+%% This LaTeX file was created by AbiWord.                                         
+%% AbiWord is a free, Open Source word processor.                                  
+%% More information about AbiWord is available at http://www.abisource.com/        
+%% ================================================================================
+
+\documentclass[letterpaper,portrait,12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{calc}
+\usepackage{setspace}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[normalem]{ulem}
+%% Please revise the following command, if your babel
+%% package does not support en-US
+\usepackage[en]{babel}
+\usepackage{color}
+\usepackage{hyperref}
+ 
+\begin{document}
+
+\setlength{\oddsidemargin}{0.6250in-1in}
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+{\huge CSE548/AMS542 Fall 2013 Analysis of Algorithms}
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+{\huge Homework 2}
+\end{center}
+
+
+\begin{center}
+{\huge Himanshu Shah}
+\end{center}
+
+
+\begin{center}
+{\huge ID : 109324380}
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+
+\end{center}
+
+
+\begin{center}
+{\huge \newpage
+}
+\end{center}
+
+
+\begin{center}
+{\huge Homework 2}
+\end{center}
+
+
+\begin{flushleft}
+\uline{Solution 1 Problem 12 :}
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Consider a set of $n$ people whom we'll denote by $P_1,P_2,P_3,.....,P_n$. For each such person we will assign two nodes namely ${P_i}_death$ and ${P_i}_birth$ where i is the number of the person in the list.
+\end{flushleft}
+
+
+\begin{flushleft}
+We will generate a graph using these node, and will put an edge between these nodes as per the following condition:
+\end{flushleft}
+
+
+\begin{flushleft}
+	- If $P_1 $ and $P_2$ have lifespans overlapped at least partially then we will have a directed edge from ${P_1}_birth $ to ${P_2}_birth$.
+\end{flushleft}
+
+
+\begin{flushleft}
+	- If $P_1$ died before $P_2$ then there will be a directed edge from  ${P_1}_death$ to ${P_2}_birth$.
+\end{flushleft}
+
+
+\begin{flushleft}
+	- There is always an edge from ${P_1}_birth$to ${P_1}_death$.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Now, by checking whether the generated directed graph is a DAG, we can know if the facts are correct or not. This is because, if the facts are not correct then there will be a case where in A will be born before B; B will be born before C, and C will be born before A, thus resulting in a cycle in the directed graph.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+If the graph does not contain a cycle, then it can be used to calculate possible birth and death dates of each person. We know that the observations are made on the people who lived over the past 200 years.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Hence by searching for a node that has no incoming edges, assigning that node the earliest date and then giving later dates to other nodes in succession will give us the required results.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{\newpage
+}
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Solution 2:}
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+The algorithm for this problem can be given as follows:
+\end{flushleft}
+
+
+\begin{flushleft}
+We will be using two arrays. Array - 1 to store a sorted list of segments and Array - 2 to store the segments that have been stabbed.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Step -1 : Calculate the length of each segment from the values given by $X_L$ and $X_R$ , and arrange the segments in an array in increasing order of their length.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Step - 2 : For each element in an array, check if it is already stabbed by referring to the Array - 2. Perform step 2 for next element in the array. If not perform step -3
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Step - 3 : 
+\end{flushleft}
+
+
+\begin{flushleft}
+	Find all the $X_L$s and $X_R$s points of other intervals that are inside the interval selected.
+\end{flushleft}
+
+
+\begin{flushleft}
+	Select the point $s$ from these $X_L $s and $X_R$s such that they stab the maximum number of intervals that are not yet stabbed, 
+\end{flushleft}
+
+
+\begin{flushleft}
+	Add that point $s$ to set P.
+\end{flushleft}
+
+
+\begin{flushleft}
+	check step 2 for next element in the Array-1.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+The running time of this algorithm will be the sum of the running time of each of the steps.
+\end{flushleft}
+
+
+\begin{flushleft}
+Running time for steps:
+\end{flushleft}
+
+
+\begin{flushleft}
+Step -1  : Here the running time is dominated primarily by the sorting function which is $O(nlogn)$.
+\end{flushleft}
+
+
+\begin{flushleft}
+Step - 2 : Here the running time is $O(1)$ as it is just a single comparison.
+\end{flushleft}
+
+
+\begin{flushleft}
+Step -3 : The step for searching the $X_L $ and $X_R$ is the most influencing factor and is $O(n^n)$. However, if we sort the values of all $X_L$ and $X_R$ then, this time is reduced to $O(n)$.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+So the upper bound to the running time of this algorithm is $O(nlogn)$.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\textbf{Proo}\textbf{f:} Let us consider that OPT is the optimal solution for this problem. 
+\end{flushleft}
+
+
+\begin{flushleft}
+Now we will prove that the set of points P generated by the algorithm is the same as the set P' generated by our algorithm.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Now as these points in the set P are minimum and each point stabs the line segments at least once, it isn't wrong to say that these points do lie on the segments with the smallest length.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Also, in order to get a set of minimum points, one needs to select a point on the smallest intervals such that the point stabs maximum number of segments.
+\end{flushleft}
+
+
+\begin{flushleft}
+We know that all such possible points are either over the entire region of the chosen line segment or they are bounded by $X_L$ or $X_R$ points.
+\end{flushleft}
+
+
+\begin{flushleft}
+Hence if the point in set P is either from theses options. Therefore, it implies that our algorithm detects the same points as the optimal solution.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{\newpage
+}
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Problem 3:}
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{A) Problem \#:7 }
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Answer: }
+\end{flushleft}
+
+
+\begin{flushleft}
+Consider $n$ jobs $J_1,J_2,.....J_n$ and for each job $J_i = p_i + f_i$ where $p_i$ is the time taken by the task on the super computer and $f_i$ is the time taken by the task on desktop computer.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Now, in order to solved the algorithm. we will sort the jobs by the decreasing order of $f_i$ and select jobs from this list one by one until all the jobs are done.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+So algorithm is :
+\end{flushleft}
+
+
+\begin{flushleft}
+	For each job $J_i$ sort the jobs in decreasing order of $f_i$
+\end{flushleft}
+
+
+\begin{flushleft}
+	Select the job with the highest value in $f_i$ and then the successive item, so on and so forth.
+\end{flushleft}
+
+
+\begin{flushleft}
+Running time:
+\end{flushleft}
+
+
+\begin{flushleft}
+	The running time of this algorithm depends mainly on the sorting function and we can do that in polynomial time. So the time complexity of this algorithm is polynomial in n. 
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\textbf{\uline{Proof:}}
+\end{flushleft}
+
+
+\begin{flushleft}
+As per the question, the processing done on desktop computer happens in parallel, where as the processing done on the super computer is in serialized form.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Now we would like to submit tasks that take the longest time in processing on a desktop computer first, so that by the time rest of the jobs are being processed, this one gets the maximum time for execution and other tasks can run simultaneously.
+\end{flushleft}
+
+
+\begin{flushleft}
+For example: Consider two tasks: $J_1$ and $J_2$. $J_1 = p_1 + f_1$ and $J_2 = p_2 + f_2$ let $f_1 = x-1 $ and $f_2 = x+1 $ and let $p_1 $ and $p_2$ are arbitrary values.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Now as we can see, if $J_2$ is scheduled earlier than $J_1$, the waiting time will decrease. This is because, the time taken by the jobs to get processed on the super computer will always be the same which is $P_1+P_2$ doesn't matter the order. Hence proved.\uline{\newpage
+}
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{B) Problem \#:12}
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Answer:}
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Sub question : a)}
+\end{flushleft}
+
+
+\begin{flushleft}
+CLAIM : There exists a valid schedule if and only if each stream $i$ satisfies $b_i \le rt_i$
+\end{flushleft}
+
+
+\begin{flushleft}
+Ans: \textbf{False}
+\end{flushleft}
+
+
+\begin{flushleft}
+\textbf{Proof: }
+\end{flushleft}
+
+
+\begin{flushleft}
+Consider two streams with rate of transmission $x-1$ and $x+1$. The permissible rate is given by x. Let each of the two streams take 1 seconds each, so $t_1=1$ and $t_2=1$. Here as $t_1 $ and $t_2$ are 1 sec, the rate of transmission becomes the number of bits $b_1 = x-1$ and $b_2 = x+1$.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+So as per the claim, each of the streams need to satisfy the condition $b_i \le rt_i$ which stream 2 does not however, there exists a schedule, \{${stream}_1, {stream}_2$\} which satisfies the ultimate condition denoted by (*).
+\end{flushleft}
+
+
+\begin{flushleft}
+Hence, proved.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Sub question : b)}
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Considering n streams. Stream i consists of a total of $b_i$ bits that need to be sent, at a constant rate, over a period of $t_i$ seconds.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Our algorithm will be :
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Step 1:} First calculate the data rate for each stream by dividing the number of total bits $b_i$ per stream to the time interval $t_i$ , this will give rate $r_i$ for each stream.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Step 2 :} Now sort the video stream in the increasing order of bit rates. 
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\uline{Step 3 :} This sorted array becomes the schedule for the video stream.
+\end{flushleft}
+
+
+- Check if the condition : For each natural number t $>$ 0, the total number of bits you send over the time interval from 0 to t cannot exceed rt holds, true.
+
+
+\begin{flushleft}
+- Select the video stream if the condition holds true ; and check for the next element in the sorted 	array.
+\end{flushleft}
+
+
+\begin{flushleft}
+- If the condition is violated; then there exists no schedule.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Running time:
+\end{flushleft}
+
+
+\begin{flushleft}
+	The running time of this algorithm depends mainly on the sorting function and we can do that in polynomial time. So the time complexity of this algorithm is polynomial in n. 
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\textbf{\uline{Proo}}\textbf{\uline{f:}}
+\end{flushleft}
+
+
+\begin{flushleft}
+ As per the problem, one cannot exceed at any given point, the number of total bits sent by a specified value. So, in order to make sure that our schedule follows this, we will choose to take streams that have the least bit rates so that we can use the difference while sending later streams that have a higher rate.
+\end{flushleft}
+
+
+\begin{flushleft}
+\newpage
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Answer : C) Problem \#:17
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+This problem can be solved by choosing the job with the earliest finishing time first strategy. However, given that some jobs run though out the midnight making the time interval circular, we need to first find a suitable point that has minimum number of tasks scheduled and then proceed with the earliest finishing time strategy.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+The following algorithm consists of two main steps:
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Step -1 : Find a suitable initial starting time from the time range of 24 hours such that it has the minimum number of scheduled jobs. This can be done by searching for an ideal time [when none of the jobs are scheduled] and if no such time is possible then searching for a time that has the minimum number of jobs to be scheduled.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+This can be precisely known from the starting and ending points of the jobs submitted and will take $O(n^2)$ time.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Step - 2 : Once we have a starting point, we need to sort the jobs by increasing finishing time starting from the time we have discovered in the previous step.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+We can now select jobs that have the earliest finishing time from the sorted array. Consecutively, to select the next jobs, we will select the next one from the sorted array if it does not conflict with the job already selected.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+The main cost involved in this step is that of sorting which can be done in $O(nlogn)$ time.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+Thus, we can create an optimal schedule in a total of $O(n^n + nlogn) = O(n^n)$ time interval which is basically polynomial time in $n$.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+\textbf{\uline{Explanation}}\textbf{\uline{:}}\textbf{\uline{ }}
+\end{flushleft}
+
+
+\begin{flushleft}
+The method of finding the starting point is done so that minimum numbers of events get affected and still we can find an optimum scheduling solution for selecting jobs.
+\end{flushleft}
+
+
+\begin{flushleft}
+The strategy for scheduling jobs is valid because it accepts jobs that free the resources as soon as possible, leaving us with higher probability of scheduling other jobs in the spare duration.
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+
+
+6
+\end{document}
