@@ -1,0 +1,191 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+
+\usepackage{url,graphicx,tabularx,array,geometry}
+\setlength{\parskip}{1ex} %--skip lines between paragraphs
+\setlength{\parindent}{0pt} %--don't indent paragraphs
+
+%-- Commands for header
+\renewcommand{\title}[1]{\textbf{#1}\\}
+\renewcommand{\line}{\begin{tabularx}{\textwidth}{X>{\raggedleft}X}\hline\\\end{tabularx}\\[-0.5cm]}
+\newcommand{\leftright}[2]{\begin{tabularx}{\textwidth}{X>{\raggedleft}X}#1%
+& #2\\\end{tabularx}\\[-0.5cm]}
+
+%\linespread{2} %-- Uncomment for Double Space
+\begin{document}
+
+\title{Home work 4}
+\line
+\leftright{\today}{Himanshu Shah} %-- left and right positions in the header
+
+\section{Problem 2 - pg 189}
+\textbf{(a) True}.
+
+When we square the values of all edges, they increase proportionately. Hence, the values that are smaller will remain smaller and those that are larger will still remain larger comparitively. In an MST only the edges with minimum weights are present. Hence,the MST will still have the same set of edges and will remain the same.
+
+\textbf{(b)True}
+
+Here also the same argument applies. As we are squaring the value of each of the edges, in the graph, the order of the edges in terms of their weights still remains unaffected. Moreover the graph being directed does not change anything as the direction of the paths still remains the same. Hence the path which that had the minimum cost between points s-t will still be the same.  
+
+\section{Problem 20 - pg 199}
+\textbf{(i) True}
+
+
+\textbf{Proof:}
+By definition, the minimum spanning tree is a spanning tree with total weight less than or equal to the weight of every other spanning tree. This also means  that MST consists of those edges that have the minimum cost for connecting two nodes.Moreover, the weight of the edges in this case is the altitude. Also, the minimum spanning tree will not contain all the edges present in graph G unless the graph itself is a minimum spanning tree. Hence, the minimum spanning tree using edge weights is a minimum connected sub-graph. 
+
+Consider the following, let $G(V, E)$ be a graph with edges E and V vertices and Let  $M(V^{'}, E^{'})$ be a minimum spanning tree of such a graph. Now M consists of those edges that have the smallest weight as per its property. Here, the altitude of the path denotes the edge weight. Hence, M consists of those paths that has the smallest possible altitudes. Moreover, M being an MST will be connecting all the nodes. Hence we can say that an MST with respect to edge weight is also minimum altitude connected subgraph.
+
+
+\textbf{(ii) True}
+
+
+\textbf{Proof:}
+A minimum altitude connected subgraph, is one that connects nodes using the edges that have minimum weight(i.e the paths with minimum altitude). A minimum spanning tree of such a graph comprises of all such edges. Hence for any graph that is a minimum altitude connected subgraph can be built using only such edges present in an MST. Moreover, as we don't have edges with the same weights, the possibility of building a graph using edges that have the same weight but are not present in the MST is done away with.
+
+
+\section{Solve the following Recurrences and give a $\theta$ bound for each of them:}
+\subsection{(a) $T(n)$ = $49T(n/25)+n^{3/2}logn$}
+\textbf{Solution:}
+The question is of the form $T(n)$ = $aT(n/b)+f(n)$
+
+where $a=49,$ $b=25,$ and $f(n)=n^{3/2}logn.$
+So, we will apply masters method and find K in the equation:
+$af(n/b) = Kf(n)$
+
+$49 {n/25}^{3/2}log{n/25}=K n^{3/2}logn$
+
+$49 (n^{3/2}/25^{3/2})log({n/25})=K n^{3/2}logn $
+
+$49 (n^{3/2}/5^{3})log({n/25})=K n^{3/2}logn $
+
+$49/5^{3} (n^{3/2})logn - log 25 =K n^{3/2}logn $
+
+Hence $K<1$
+So, $T(n)=\theta(f(n))$
+
+ $T(n)=\theta(n^{3/2}logn)$
+
+
+\subsection{(b) $T(n)$ = $T(n-1)+2$}
+\textbf{Solution:}
+
+$T(n)$ = $T(n-1)+2$
+$T(n-1)$ = $T(n-2)+2*2$
+$T(n-2)$ = $T(n-3)+2*3$
+$T(n-3)$ = $T(n-4)+2*4$
+$.....$
+Hence, $T(n)$ = $T(n-k)+ 2*k$
+
+To find the base case for this recurrence, $T(0) = c0+2*n$
+Hence, we can say that $T(n)\in\theta(n)$. 
+
+\subsection{(C) $T(n)$ = $2T(n-1)+1$}
+\textbf{Solution:}
+
+
+$T(n)$ = $2T(n-1)+1$
+
+$T(n)$ = $T(n-1)+T(n-1)+1$
+
+$T(n-1)$ = $T(n-2)+T(n-2)+2+1$
+
+$T(n-1)$ = $T(n-2)+T(n-2)+(2*2)-1$
+
+$T(n-2)$ = $T(n-3)+T(n-3)+(2*3)-1$
+
+$T(n-3)$ = $T(n-4)+T(n-4)+(2*4)-1$
+
+$.....$
+
+Hence, $T(n)$ = $2T(n-k)+(2*k)-1$
+ 
+Base case will be : $T(0)$ = $c0+(2*n)-1$
+
+Hence, we can say that $T(n)\in\theta(n)$. 
+
+
+\subsection{(d) $T(n)$ = $T(\sqrt n)+1$}
+\textbf{Solution:}
+
+Let P be a function defined for all m such that
+$P(m)=T(2^m)$
+
+So, 
+$P(m)= T(2^m)$
+
+$    = T(2^{m/2})+1$
+
+$P(m)= P(m/2)+1$
+
+Hence, the equation is of the form $T(n)$ = $aT(n/b)+f(n)$
+
+where $a=1,$ $b=2,$ and $f(n)=1.$
+
+So, we will apply masters method and find K in the equation:
+$af(n/b) = Kf(n)$
+
+$f(n/2) = K$
+
+Hence K=1. So 
+
+$T(n)=\theta(f(n)log_b m)$
+
+$T(n)=\theta(1log_2 m)$
+$m=log n$
+So, $T(n)=\theta(log log n)$.
+
+\section{Give an Algorithm for the following:}
+\subsection{(a)}
+\textbf{Solution:}
+We will use the notation V(x) to denote the \textit{absolute} value of the element at position x in the array 
+
+\textbf{Algorithm: }
+
+\begin{verbatim}
+
+Step(i): Sort the entire set of elements in increasing order using quick sort.
+Step(ii): Make two pointers i and j which denote the beginning and ending of the array. Set Flag to 0, this will indicate whethere there is a pair present or not.
+Step(iii): 
+
+While(i!=j)
+{
+     if(V(i)>V(j))
+       i++;
+     else if(V(i)<V(j))
+       j++;
+     else
+      {
+         print("V(i) and V(j) have sum zero");
+         flag = 1;
+         break;
+      }
+}
+
+//Check of flag is set or not
+if(flag == 0)
+   print("No such pairs found");
+\end{verbatim}
+
+The running time of the algorithm  = Time taken to sort the array plus the time taken to traverse all inputs.
+
+Hence,
+$=O(nlogn)+O(n)$
+$=O(nlogn)$
+
+\subsection{(b)}
+\textbf{Solution:}
+
+In this algorithm we will use three pointers i,j and k for book keeping purposes. 
+
+Before we 
+\textbf{Algorithm: }
+
+
+
+
+
+\end{document}
+
+
