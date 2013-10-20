@@ -1,4 +1,7 @@
+
 \documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+
 \usepackage{url,graphicx,tabularx,array,geometry}
 \setlength{\parskip}{1ex} %--skip lines between paragraphs
 \setlength{\parindent}{0pt} %--don't indent paragraphs
@@ -19,41 +22,140 @@
 \section{Problem 2 - pg 189}
 \textbf{(a) True}.
 
-When we square the values of all edges, they increase proportionately. Hence, the values that are smaller will remain smaller and those that are bigger will still remain bigger comparitively. In an MST only the edges with minimum weights are present. Hence,the MST will still have the same set of edges and will remain the same.
+When we square the values of all edges, they increase proportionately. Hence, the values that are smaller will remain smaller and those that are larger will still remain larger comparitively. In an MST only the edges with minimum weights are present. Hence,the MST will still have the same set of edges and will remain the same.
 
 \textbf{(b)True}
 
-Here also the same argument applies. As we are squaring the value of each of the edges, in the graph, the order of the edges in terms of their weights still remains unaffected and hence the path which that had the minimum cost between points s-t will still be the same.  
+Here also the same argument applies. As we are squaring the value of each of the edges, in the graph, the order of the edges in terms of their weights still remains unaffected. Moreover the graph being directed does not change anything as the direction of the paths still remains the same. Hence the path which that had the minimum cost between points s-t will still be the same.  
 
 \section{Problem 20 - pg 199}
 \textbf{(i) True}
-By definition, the minimum spanning tree is a spanning tree with weight less than or ewq
 
 
-What I do more often is simply put the ``section'' titles in a
-$\backslash$textbf\{\} tag (as shown in this section).  This makes them stand
-out, but doesn't take up a lot of extra white space on the page.
+\textbf{Proof:}
+By definition, the minimum spanning tree is a spanning tree with total weight less than or equal to the weight of every other spanning tree. This also means  that MST consists of those edges that have the minimum cost for connecting two nodes.Moreover, the weight of the edges in this case is the altitude. Also, the minimum spanning tree will not contain all the edges present in graph G unless the graph itself is a minimum spanning tree. Hence, the minimum spanning tree using edge weights is a minimum connected sub-graph. 
 
-\textbf{All the benefits of \LaTeX}
+Consider the following, let $G(V, E)$ be a graph with edges E and V vertices and Let  $M(V^{'}, E^{'})$ be a minimum spanning tree of such a graph. Now M consists of those edges that have the smallest weight as per its property. Here, the altitude of the path denotes the edge weight. Hence, M consists of those paths that has the smallest possible altitudes. Moreover, M being an MST will be connecting all the nodes. Hence we can say that an MST with respect to edge weight is also minimum altitude connected subgraph.
 
-Using \LaTeX for homeworks allows you to do lots of nice things like:
-\begin{itemize}
-\item Have your work neatly typeset
-\item Impress your professors who might recognize the fonts
-\item Include equations easily
-\item Put math $\in$ the text: $\textrm{money} = \sqrt{\textrm{all evil}}$
-\item Not ever have to mess with MS Word
-\end{itemize}
 
-Being able to include equations is especially nice.  Say you were doing a
-homework the Pythagorean theorem:
-\begin{equation}
-d = \sqrt{a^2+b^2}.
-\end{equation}
-It is simple to include it right in the text!  In fact, when doing math
-homeworks I often find it simpler to code derivations in \LaTeX.  If I make a
-mistake somewhere, I can quickly change all down-line equations with a
-find-replace procedure instead of having to re-write or cross out large blocks
-of text.
+\textbf{(ii) True}
+
+
+\textbf{Proof:}
+A minimum altitude connected subgraph, is one that connects nodes using the edges that have minimum weight(i.e the paths with minimum altitude). A minimum spanning tree of such a graph comprises of all such edges. Hence for any graph that is a minimum altitude connected subgraph can be built using only such edges present in an MST. Moreover, as we don't have edges with the same weights, the possibility of building a graph using edges that have the same weight but are not present in the MST is done away with.
+
+
+\section{Problem 21 - pg 200}
+\textbf{Solution:}
+
+From the question we can comprehend that there can be atmost 9 cycles in a near tree graph and hence we might need to remove at most 9 edges.
+
+We will be using DFS to identify backedges (and cycles) and remove them.
+
+Below is the proposed algorithm that does so in O(n) time:
+\begin{verbatim}
+Choose an arbitary Node as INITIAL_START_NODE.
+Run DFS(Initial_Start_Node) 
+IF a back edge is detected.
+[An already visited node is traversed again].
+          Save the node as START_NODE and the node before it as END_NODE.
+          Again run DFS(START_NODE) till END_NODE.
+          At each step save the edge with maximum weight.
+    Remove the edge with the maximum weight
+    Again run DFS(Initial_Start_Node);
+Else 
+  Exit normally.
+\end{verbatim}
+
+Calculating the time complexity of the algorithm:
+
+As per the near tree definition, there can be at most 9 edges in the worst case for removal.
+
+The running time of DFS is O(n) and we need to run DFS for atmost 9 times, after which it will exit normally, as there would be no more cycles in the graph.
+
+Also we are running DFS twice for each cycle discovered.
+
+So, the running time = 9(n + n) = 18n = O(n).
+
+Thus proved.
+
+\section{Problem 26 - pg 202}
+\textbf{Solution:}
+In order to solve this question, we will be using graphs.
+
+For each of the edges of the graph G, we will plot some initial points on an X-Y coordinate plane.
+
+We shall do this so as to get an idea of how the edges are behaving at various times with respect to each other.
+
+Now the graph that overlaps with the
+
+
+\section{Problem 27 - pg 202}
+\textbf{Answer:}
+\textbf{True}
+
+$\mathcal{H}$ uses all the possible spanning tree permutations of graph G. So, if two spanning trees have completely different set of edges, there would always be other spanning trees that would differ by just one edge. Such trees would be neighbours and a collection of all such neighbours would eventually connect the two spanning trees even though they have completely different set of edges.
+
+\textbf{Proof:}
+Consider a Graph G(V,E) with V vertices and E edges.
+
+The graph G has multiple spanning trees denoted by $T^{'},T^{''},T^{'''},...,T^{n}$. 
+
+Now, $T^{'}(V,E^{'})$ has edges $E^{'}$ and vertices V and $T^{n}(V,E^{o})$ has edges $E^{o}$ and vertices V such that $E^{'} \cap E^{n} = NULL$.
+
+I will prove that even though $T^{'} $ and  $T^{n}$ do not share a single edge, they are still connnected in $\mathcal{H}$.
+
+In order to do this we will connect $T^{'} $  to its neighbors $T^{"} $ who has only one edge that is different from $T^{'} $.
+
+Similarly, we will perform the same operation and connect $T^{"} $  to its neighbors $T^{"'} $ who has only one edge that is different from $T^{"} $.
+
+Now as $T^{'} $ is connected to $T^{"} $ and $T^{"} $ is connected to $T^{"'} $, we can say that $T^{'} $ is connected to $T^{"'} $.
+
+If we continue to perform this operation, then we will notice that we will be getting closer and closer in terms of the number of different edges to $T^{n} $. Eventually there will be a connection from $T^{'} $ to a spanning tree who has just one edge different from $T^{n} $ and in this way, we will get connected to $T^{n} $.
+
+Hence, we can say that $\mathcal{H}$ will always be connected. 
+
+Thus proved.
+
+
+\section{Problem 31 - pg 204}
+\textbf{Answer:
+(a)True}
+
+Let a path exists between A and B in H such that the path length is $d_{uv}$.
+
+Now there exists an edge in G such that the length between A and B is $l_{AB1}$, such that $l_{AB1}  < 3  d_{uv}$. Hence as per the algorithm this edge won't be added to the H. So the length of the path will still remain  $d_{uv}$, where as it is $l_{AB1}$ in G.
+
+Lets assume there exists another edge in G such that the length between A and B is $l_{AB2}$, such that $l_{AB2}  > 3  d_{uv}$. Hence as per the algorithm this edge will be added to H. So the length of the path will now become $l_{AB2}$.
+
+Hence if the length of the edge under consideration is smaller than one third of the length of the existing path in H, then it will be added to the graph. 
+
+This will always keep the distance  for paths less than at most three times the path length in G, because once it increases than thrice, it gets added to H and the cost reduces.
+
+\textbf{(b)}
+We know that for a graph G with n-vertex and a girth$ > $ r the size of the graph is given as $n\lceil n^{2/(r-2)}\rceil $.
+
+Hence for the graph H, the value of r is 4. This is because, in case there is a cycle then the length of the cycle would greater than or equal to $l_e + 3l_e$(4 edges). This is due to the constraint for the graph H. 
+
+Hence, the size of the graph lets say $f(n) = n\lceil n^{2/(4-2)}\rceil $
+$=n*\lceil n^{2/2}\rceil$
+$=n*\lceil n\rceil$
+
+So in equation 
+$\lim_{n \to \infty} f(n)/n^2$.
+
+If we replace $f(n)$ by $n^2$,
+then $\lim_{n \to \infty} n \lceil n \rceil /n^2$.
+$= 0.$
+
+Hence, Proved.
+
+
+
+
+
+
 
 \end{document}
+
+
