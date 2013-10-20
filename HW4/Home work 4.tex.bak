@@ -179,9 +179,10 @@ $=O(nlogn)$
 
 In this algorithm we will use three pointers i,j and k for book keeping purposes. 
 
-Before we 
-\textbf{Algorithm: }
-
+Before we begin, we will sort the array in increasing order using quick sort. 
+We will denote the value of an element at position x in the array using the notation V(x) \textbf{Algorithm: }
+Step(1):
+set i = value of the element at the first position
 
 
 
